@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');:root {
+    /*--dark-brown :rgb(31, 29, 30);*/
+    --dark-brown : rgb(31, 139, 222);
+    /*--light-brown : rgb(217,168,123);*/
+    --light-brown : rgb(255,255,255);
+}
+
+*{
+    font-family: 'Fjalla One', sans-serif;
+    /*font-family: 'Poppins', sans-serif;*/
+}
+
+body{
+    background-color : var(--light-brown) !important;
+}
+
+.navbar-main{
+    background-color : var(--dark-brown) !important;
+    width : 100%;
+    justify-content: unset !important;
+}
+
+#hamburger{
+    font-size:2rem;
+    color: var(--light-brown);
+}
+
+#navbarDropdownMenuLink{
+    /* justify-content: end ; */
+    font-size: 1.5rem;
+}
+
+.dropdown-menu{
+    --bs-dropdown-min-width: 1rem;
+    font-size: 1.2rem;
+}
+
+.logout{
+    color : var(--light-brown);
+}
+
+#container{
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.offcanvas-container{
+    background-color: var(--light-brown) !important;
+
+}
+
+#offcanvasExampleLabel{
+    font-size: 5vmin;
+    font-weight: bold;
+}
+
+.offcanvas-body{
+    overflow:hidden;
+
+}
+
+.offcanvas-items{
+    font-size : 3vmin;
+    list-style : none;
+}
+
+.offcanvas-items-li{
+    padding: 3vmin 0;
+    border-radius: 10px;
+    text-align: justify;
+    padding-left:10px;
+}
+
+.offcanvas-items-li:hover{
+    background-color : var(--dark-brown);
+    color : var(--light-brown);
+
+}
+
+.offcanvas-items-li:hover a{
+    background-color : var(--dark-brown);
+    color : var(--light-brown);
+
+}
+
+.offcanvas-items-a{
+    text-decoration : none;
+    color : var(--dark-brown);
+    text-align : center;
+}
+
+/*.offcanvas-items-li a:hover{*/
+/*    color : var(--light-brown);*/
+/*}*/
+
+.offcanvas-items-li i{
+    margin-left: 0;
+    margin-right: 0.5rem;
+    width: 40px;
+}
+

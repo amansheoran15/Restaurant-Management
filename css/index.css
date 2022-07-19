@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: rgb(31, 29, 30) !important;
+    background-image: url(../assets/resto-img.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#container{
+    display: flex;
+    width: 90%;
+    height: 90vh;
+    margin: auto;
+    margin-top: 2rem;
+    align-items: center;
+    background-color: rgb(217,168,123);
+    padding: 2rem;
+    border-radius: 30px;
+}
+#login{
+    width: 40%;
+}
+
+.login-title{
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content:center;*/
+    /*align-items:center;*/
+}
+
+#admin-login{
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 1000;
+    text-align: center;
+}
+
+#img{
+    width: 60%;
+    margin-left: 2rem;
+    /*border: 1px solid black;*/
+    height: 80%;
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+#img img{
+    height: 100%;
+    border-radius: 15px;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 21%;
+    transform: translate(-50%, -50%);
+    font-size: 8vmin;
+    text-align: left;
+    font-family: 'Dancing Script', cursive;
+}
+
+.btn{
+    background-color:rgb(31, 29, 30) !important;
+    border: 1px solid rgb(31, 29, 30) !important;
+}
+
+footer{
+    color: white;
+    margin-top:1rem;
+}
