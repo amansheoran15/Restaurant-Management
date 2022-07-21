@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         session_start();
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
-        header('Location:welcome.php');
+        header('Location:menu.php');
     }else{
         $showError = "Incorrect Username or Password";
     }

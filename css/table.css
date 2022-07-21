@@ -1,0 +1,66 @@
+body{
+    /*background-color: rgb(31, 29, 30);*/
+    /*display: flex;*/
+    justify-content: center;
+    height:100vh;
+}
+
+
+
+.items{
+    width:1000px !important;
+    margin:4rem 0rem;
+}
+
+.headers{
+    font-weight: 700 !important;
+    background-color: rgb(31, 139, 222)!important;
+    color:rgb(255, 255, 255)!important;
+    padding:0.6rem 2rem!important;
+    /*width:100%;*/
+}
+
+td{
+    text-align: center!important;
+    padding:0.6rem 2rem!important;
+    font-size: 1.2rem!important;
+    margin:0.2rem!important;
+    padding:0.7rem 1.5rem!important;
+    color: white!important;
+}
+
+.table-div{
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /*margin: auto;*/
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+tr:nth-of-type(2n+1){
+    background-color: rgb(36, 122, 196)!important;
+
+}
+
+tr:nth-of-type(2n){
+    background-color: rgb(31, 139, 222)!important;
+}
+
+
+
+
+/*  color
+    font-size
+    padding
+    margins
+    button style
+    table positioning
+
+*/

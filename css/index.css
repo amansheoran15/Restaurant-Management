@@ -6,10 +6,10 @@
 }
 
 body{
-    background-color: rgb(31, 29, 30) !important;
-    background-image: url(../assets/resto-img.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: rgb(31, 139, 222) !important;
+    /*background-image: url(../assets/resto-img.jpg);*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
 }
 
 #container{
@@ -19,7 +19,7 @@ body{
     margin: auto;
     margin-top: 2rem;
     align-items: center;
-    background-color: rgb(217,168,123);
+    background-color: rgb(255, 255, 255);
     padding: 2rem;
     border-radius: 30px;
 }

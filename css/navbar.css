@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');:root {
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+:root {
     /*--dark-brown :rgb(31, 29, 30);*/
     --dark-brown : rgb(31, 139, 222);
     /*--light-brown : rgb(217,168,123);*/
@@ -29,6 +30,7 @@ body{
 #navbarDropdownMenuLink{
     /* justify-content: end ; */
     font-size: 1.5rem;
+    color: var(--light-brown) !important;
 }
 
 .dropdown-menu{
@@ -37,7 +39,7 @@ body{
 }
 
 .logout{
-    color : var(--light-brown);
+    color : var(--light-brown) !important;
 }
 
 #container{
@@ -83,7 +85,7 @@ body{
 
 }
 
-.offcanvas-items-li:hover a{
+.offcanvas-items-a:hover{
     background-color : var(--dark-brown);
     color : var(--light-brown);
 

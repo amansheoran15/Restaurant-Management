@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$database = "users";
+$database = "restomang";
 
 $conn = mysqli_connect($servername,$username,$password,$database);
 if(!$conn){

@@ -1,0 +1,14 @@
+body{
+    background-color: rgb(31, 139, 222);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color:rgb(77, 43, 0);
+}
+
+.editEmployee{
+    width:1200px;
+    margin:1.5rem 0rem;
+    background-color: white;
+    border-radius: 1rem;
+}
