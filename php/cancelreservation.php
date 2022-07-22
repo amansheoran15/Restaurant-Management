@@ -19,7 +19,8 @@ if(isset($_GET['rn']))
             echo'<script> alert("Reservation cancelled")</script>
 
             <meta http-equiv="refresh"
-            content="1; url = viewreservation.php" />';
+           content="1; url = viewreservation.php" /> 
+            ';
 
         }
 }

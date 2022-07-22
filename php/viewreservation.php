@@ -44,7 +44,7 @@ require '../partials/_dbconnect.php';
             <td>".$row['table_no']."</td>
             <td> <a href='editReservation.php?rn=$row[res_no]&name=$row[Name]&mobile=$row[Mobile]&email=$row[Email]&count=$row[Count]&time=$row[time]' 
             onclick='return checkedit()'class='btn btn-success px-4'>Edit</a></td>
-            <td><a href='cancelreservation.php?rn= ".$row['res_no']."' onclick='return checkdelete()' 
+            <td><a href='cancelreservation.php?rn=".$row['res_no']."' onclick='return checkdelete()' 
             class='btn btn-danger'>Cancel</a></td></tr>";
           }
         ?>      
