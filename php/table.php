@@ -47,10 +47,12 @@ require '../partials/_dbconnect.php';
             echo '<td>'.$row['capacity'].'</td>';
             echo '<td>'.$free.'</td>';
             if($row['waiter#-assign']==null){
-                echo '<td><a href="#" class="btn btn-success px-4">Add</a></td>';
+                echo '<td>-</td>';
+            }else{
+                echo '<td>'.$row['waiter#-assign'].'</td>';
             }
 //            echo '<td>'.$row['waiter#-assign'].'</td>';
-            echo '<td><a href="editItem.php?itemNum='.$row['item-no'].'" class="btn btn-success px-4">Edit</a></td>
+            echo '<td><a href="editItem.php?itemNum='.$row['table-no'].'" class="btn btn-success px-4">Edit</a></td>
                             <td><a class="btn btn-danger" onclick="removeItem(this)">Remove</a></td>';
             echo '</tr>';
             $sno++;

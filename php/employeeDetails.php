@@ -46,18 +46,23 @@ function formatDate($date) {
         <?php
           $sql="select * from employee";
           $result= mysqli_query($conn,$sql);
+          $avail = ["No","Yes"];
           while($row=(mysqli_fetch_assoc($result)))
           {
-            echo"
-            <tr>
-            <td>".$row['empid']."</td>
-            <td>".$row['name']."</td>
-            <td>".$row['designation']."</td>
-            <td>".$row['salary']."</td>
-            <td>".$row['phone']."</td>
-            <td>".$row['email']."</td>
-            <td>".$row['doj']."</td>
-            <td>".$row['availability']."</td>
+            echo'<tr>';
+            echo '<td>'.$row['empid'].'</td>';
+            echo '<td>'.$row['name'].'</td>';
+            echo '<td>'.$row['designation'].'</td>';
+            echo '<td>'.$row['salary'].'</td>';
+            echo '<td>'.$row['phone'].'</td>';
+            echo '<td>'.$row['email'].'</td>';
+            echo '<td>'.$row['doj'].'</td>';
+            if($row['availability']==NULL){
+                echo '<td>-</td>';
+            }else{
+                echo '<td>'.$avail[$row['availability']].'</td>';
+            }
+            echo "
             <td> <a href='editEmployee.php?empid=".$row['empid']."' onclick='return checkedit()'class='btn btn-success px-4'>Edit</a></td>
             <td><a href='removeEmployee.php?empid=".$row['empid']."' onclick='return checkdelete()' class='btn btn-danger'>Remove</a></td></tr>";
           }

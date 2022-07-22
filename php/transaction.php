@@ -18,6 +18,7 @@ require '../partials/_dbconnect.php';
     <table class="items" id="transaction_table">
         <thead>
         <tr>
+            <td class="headers">Sno.</td>
             <td class="headers">Order ID</td>
             <td class="headers">Table No.</td>
             <td class="headers">Order Items</td>
@@ -29,73 +30,56 @@ require '../partials/_dbconnect.php';
         <tbody>
 
         <?php
-        $query = "SELECT * FROM TALEMANG";
+        $query = "SELECT * FROM `orders` where `paid` = 0";
         $result = mysqli_query($conn,$query);
         $sno = 1;
         while($row = mysqli_fetch_assoc($result)){
-            if($row['isFree']==1){
-                $free = "Yes";
-            }else{
-                $free = "No";
-            }
             echo '<tr>';
             echo '<td>'.$sno.'</td>';
-            echo '<td class="itemNum">'.$row['table-no'].'</td>';
-            echo '<td>'.$row['capacity'].'</td>';
-            echo '<td>'.$free.'</td>';
-            if($row['waiter#-assign']==null){
-                echo '<td><a href="#" class="btn btn-success px-4">Add</a></td>';
-            }
-//            echo '<td>'.$row['waiter#-assign'].'</td>';
-            echo '<td><a href="editItem.php?itemNum='.$row['item-no'].'" class="btn btn-success px-4">Edit</a></td>
-                            <td><a class="btn btn-danger" onclick="removeItem(this)">Remove</a></td>';
+            echo '<td class="orderId">'.$row['oid'].'</td>';
+            echo '<td>'.$row['table-no'].'</td>';
+            echo '<td>
+            <a href="receipt.php?oid='.$row['oid'].'" target="_blank" class="btn btn-success">View</a>
+            <a href="receipt.php?oid='.$row['oid'].'" target="_blank" class="btn btn-success">Update</a>
+            </td>';
+            echo '<td>'.$row['date'].'</td>';
+            echo '<td><a class="btn btn-success" onclick="payBill(this)">Pay</a></td>';
             echo '</tr>';
             $sno++;
         }
         ?>
-
         </tbody>
 
     </table>
 </div>
 <div class="d-flex justify-content-center mb-4">
-    <a href="newItem.php" class="btn btn-info">New Order</a>
+    <a href="newOrder.php" class="btn btn-info">New Order</a>
 </div>
 <div class="table-div">
-    <h3>Previous Orders</h3>
+    <h3>Completed Orders</h3>
     <table class="items" id="currorder_table">
         <thead>
         <tr>
+            <td class="headers">SNo.</td>
             <td class="headers">Order ID</td>
             <td class="headers">Table No.</td>
             <td class="headers">Date/Time</td>
             <td class="headers">Receipt</td>
-
         </tr>
         </thead>
         <tbody>
 
         <?php
-        $query = "SELECT * FROM TALEMANG";
+        $query = "SELECT * FROM `orders` where `paid` = 1";
         $result = mysqli_query($conn,$query);
         $sno = 1;
         while($row = mysqli_fetch_assoc($result)){
-            if($row['isFree']==1){
-                $free = "Yes";
-            }else{
-                $free = "No";
-            }
             echo '<tr>';
             echo '<td>'.$sno.'</td>';
-            echo '<td class="itemNum">'.$row['table-no'].'</td>';
-            echo '<td>'.$row['capacity'].'</td>';
-            echo '<td>'.$free.'</td>';
-            if($row['waiter#-assign']==null){
-                echo '<td><a href="#" class="btn btn-success px-4">Add</a></td>';
-            }
-//            echo '<td>'.$row['waiter#-assign'].'</td>';
-            echo '<td><a href="editItem.php?itemNum='.$row['item-no'].'" class="btn btn-success px-4">Edit</a></td>
-                            <td><a class="btn btn-danger" onclick="removeItem(this)">Remove</a></td>';
+            echo '<td class="itemNum">'.$row['oid'].'</td>';
+            echo '<td>'.$row['table-no'].'</td>';
+            echo '<td>'.$row['date'].'</td>';
+            echo '<td><a href="receipt.php?oid='.$row['oid'].'" target="_blank" class="btn btn-success">Receipt</a></td>';
             echo '</tr>';
             $sno++;
         }
@@ -120,6 +104,24 @@ require '../partials/_dbconnect.php';
     $(document).ready( function () {
         $('#currorder_table').DataTable();
     } );
+
+    function payBill(e){
+        let oid = e.parentElement.parentElement.querySelector('.orderId').innerText;
+
+        console.log(oid);
+        
+        $.ajax({
+            url: "payBill.php",
+            method: "POST",
+            data: {
+                oid: oid,
+            },
+            success: function (data) {
+                console.log(data);
+                location.reload(true);
+            }
+        })
+    }
 </script>
 
 <?php require '../partials/_navbar_footer.php'; ?>
