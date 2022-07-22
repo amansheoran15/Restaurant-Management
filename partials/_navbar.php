@@ -45,7 +45,7 @@
           <a href="../php/menu.php" class="offcanvas-items-a"><li class="offcanvas-items-li"><i class="fa-solid fa-bowl-food"></i>Manage Menu</li></a>
           <a href="" class="offcanvas-items-a"><li class="offcanvas-items-li"><i class="fa-solid fa-cubes-stacked"></i>Manage Stock</li></a>
           <a href="#" class="offcanvas-items-a"><li class="offcanvas-items-li"><i class="fa-solid fa-money-bill-1-wave"></i>Manage Transactions</li></a>
-          <a href="#" class="offcanvas-items-a"><li class="offcanvas-items-li"><i class="fa-solid fa-headset"></i>Manage Reservations</li></a>
+          <a href="../php/reservation.php" class="offcanvas-items-a"><li class="offcanvas-items-li"><i class="fa-solid fa-headset"></i>Manage Reservations</li></a>
           <a href="../php/table.php" class="offcanvas-items-a"><li class="offcanvas-items-li"><i class="fa-solid fa-chair"></i>Manage Table</li></a>
           <a href="../php/employeeDetails.php" class="offcanvas-items-a"><li class="offcanvas-items-li"><i class="fa-solid fa-user"></i>Manage Staff</li></a>
         </ul>

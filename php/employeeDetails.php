@@ -58,7 +58,7 @@ function formatDate($date) {
             <td>".$row['email']."</td>
             <td>".$row['doj']."</td>
             <td>".$row['availability']."</td>
-            <td> <a href='editEmployee.php' onclick='return checkedit()'class='btn btn-success px-4'>Edit</a></td>
+            <td> <a href='editEmployee.php?empid=".$row['empid']."' onclick='return checkedit()'class='btn btn-success px-4'>Edit</a></td>
             <td><a href='removeEmployee.php?empid=".$row['empid']."' onclick='return checkdelete()' class='btn btn-danger'>Remove</a></td></tr>";
           }
         ?>

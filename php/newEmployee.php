@@ -1,10 +1,5 @@
 <?php
-$host = 'localhost';
-$user = 'root';
-$pass = '';
-$db_name = 'rms';
-
-	$con = new mysqli($host,$user,$pass,$db_name);
+require '../partials/_dbconnect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +11,7 @@ $db_name = 'rms';
 
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="editEmployeeStyle.css">
+    <link rel="stylesheet" href="../css/editEmployeeStyle.css">
 
 
 </head>
@@ -99,7 +94,6 @@ $db_name = 'rms';
                 <input type ="submit" id="submitBtn" name="submit"  placeholder="Submit"value="submit">
                 </div>
             </div>
-            <div class="form-group">
         </form>
         </div>
     </div>
@@ -115,16 +109,18 @@ $db_name = 'rms';
    $doj  = $_POST['doj'];
    $avail =$_POST['avail'];
    $query="INSERT INTO employee(name,empid,designation,salary,phone,email,doj,availability) 
-   VALUES('$name','$empid','$desig','$sal','$phone','$email','$doj','$avail')";
-   $data=mysqli_query($con,$query); 
+   VALUES('$name','$empid','$desig','$sal','$phone','$email','$doj','1')";
+   $data=mysqli_query($conn,$query);
    if($data)
     {
         echo"<script> alert('Record added ')</script>";
      ?>
          <meta http-equiv="refresh" 
-          content="1; url = http://localhost/rms/employee/employee/employeeDetails.php" />
+          content="1; url = employeeDetails.php" />
      <?php
-    } 
+    }else{
+       echo mysqli_error($conn);
+   }
 }
 ?>
 </body>
