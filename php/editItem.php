@@ -76,14 +76,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
                 <?php
                 if($showErr){
-//                    echo '<div class="alert alert-danger" role="alert">'
-//                              .$showErr.
-//                          '</div>';
                     echo '<script>
                             alert("'.$showErr.'");
                             window.location = "menu.php";
                             </script>';
-//                    header('location:menu.php');
                 }
                 ?>
 

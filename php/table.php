@@ -43,7 +43,7 @@ require '../partials/_dbconnect.php';
             }
             echo '<tr>';
             echo '<td>'.$sno.'</td>';
-            echo '<td class="itemNum">'.$row['table-no'].'</td>';
+            echo '<td class="tableNum">'.$row['table-no'].'</td>';
             echo '<td>'.$row['capacity'].'</td>';
             echo '<td>'.$free.'</td>';
             if($row['waiter#-assign']==null){
@@ -52,8 +52,8 @@ require '../partials/_dbconnect.php';
                 echo '<td>'.$row['waiter#-assign'].'</td>';
             }
 //            echo '<td>'.$row['waiter#-assign'].'</td>';
-            echo '<td><a href="editItem.php?itemNum='.$row['table-no'].'" class="btn btn-success px-4">Edit</a></td>
-                            <td><a class="btn btn-danger" onclick="removeItem(this)">Remove</a></td>';
+            echo '<td><a href="editTable.php?tableNum='.$row['table-no'].'" class="btn btn-success px-4">Edit</a></td>
+                            <td><a class="btn btn-danger" onclick="removeTable(this)">Remove</a></td>';
             echo '</tr>';
             $sno++;
         }
@@ -65,7 +65,7 @@ require '../partials/_dbconnect.php';
 </div>
 
 <div class="d-flex justify-content-center mb-4">
-    <a href="newItem.php" class="btn btn-info">Add Table</a>
+    <a href="newTable.php" class="btn btn-info">Add Table</a>
 </div>
 
 <div class="table-div">
@@ -92,7 +92,7 @@ require '../partials/_dbconnect.php';
 
             echo '<tr>';
             echo '<td>'.$sno.'</td>';
-            echo '<td class="itemNum">'.$row['table-no'].'</td>';
+            echo '<td>'.$row['table-no'].'</td>';
             echo '<td>'.$free[$row['7:00']].'</td>';
             echo '<td>'.$free[$row['8:00']].'</td>';
             echo '<td>'.$free[$row['9:00']].'</td>';
@@ -124,17 +124,17 @@ require '../partials/_dbconnect.php';
         $('#reserve_info').DataTable();
     } );
 
-    function removeItem(e) {
-        let itemId = e.parentElement.parentElement.querySelector('.itemNum').innerText;
+    function removeTable(e) {
+        let tableId = e.parentElement.parentElement.querySelector('.tableNum').innerText;
 
-        console.log(itemId);
+        // console.log(tableId);
 
         $.ajax({
-            url: "removeItem.php",
+            url: "removeTable.php",
             method: "POST",
             data: {
-                itemNum: itemId,
-                removeItem: true,
+                tableNum: tableId,
+                removeTable: true,
             },
             success: function (data) {
                 console.log(data);
@@ -143,23 +143,7 @@ require '../partials/_dbconnect.php';
         })
     }
 
-    function editItem(e){
-        let itemId = e.parentElement.parentElement.querySelector('.itemNum').innerText;
 
-        $.ajax({
-            url: "removeItem.php",
-            method: "POST",
-            data: {
-                itemNum: itemId,
-                removeItem: true,
-            },
-            success: function (data) {
-                console.log(data);
-                location.reload(true);
-            }
-        })
-
-    }
 </script>
 <?php require '../partials/_navbar_footer.php'; ?>
 </body>
