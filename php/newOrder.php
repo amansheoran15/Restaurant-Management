@@ -60,7 +60,7 @@ require '../partials/_dbconnect.php';
             <div class="items">
                 <div class="row d-flex justify-content-evenly mb-3">
                     <div class="col-2 d-flex align-items-center" style="font-size: 1.3rem;">
-                        <label for="item-no">Item No.</label>
+                        <label for="item-no">Item</label>
                     </div>
                     <div class="col-6">
                         <select class="form-select" name='item-no' aria-label="Default select example">
@@ -79,7 +79,7 @@ require '../partials/_dbconnect.php';
                         <input class="form-control" type="number" name="qty" placeholder="Enter qty" value="1">
                     </div>
                     <div class="col-1">
-                        <button class="btn btn-success" onclick="removeItemBTN(this)">Delete Item</button>
+                        <button class="btn btn-danger" onclick="removeItemBTN(this)">Delete</button>
                     </div>
                 </div>
             </div>
