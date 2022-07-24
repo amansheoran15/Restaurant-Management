@@ -23,7 +23,7 @@ body{
 }
 
 #hamburger{
-    font-size:2rem;
+    font-size:2.5rem;
     color: var(--light-brown);
 }
 
@@ -57,9 +57,13 @@ body{
 
 }
 
-#offcanvasExampleLabel{
-    font-size: 5vmin;
+#resto-title{
+    font-size: 4vmin;
     font-weight: bold;
+}
+
+#resto-title img{
+    margin-right: 10px;
 }
 
 .offcanvas-body{
@@ -106,4 +110,17 @@ body{
     margin-right: 0.5rem;
     width: 40px;
 }
+
+#footer {
+    position:absolute;
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 1rem;
+    bottom:0;
+    width:100%;
+    height:60px;   /* Height of the footer */
+    background:var(--dark-brown);
+}
+
 

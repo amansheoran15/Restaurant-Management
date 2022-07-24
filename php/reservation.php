@@ -87,7 +87,8 @@ require '../partials/_dbconnect.php';
                </div>
             </div>
             <div class="d-flex justify-content-center mb-3">
-                <input type ="submit" id="reserveBtn" name="reserve" placeholder="Reserve"value="Reserve">
+                <input type ="submit" id="reserveBtn" name="reserve" class="btn btn-primary" placeholder="Reserve"value="Reserve">
+                <button type="button" class="btn btn-primary ml-10" id="view-reser" style="margin-left: 3rem;">View Reservations</button>
             </div>
 </div>
     </form>
@@ -132,6 +133,12 @@ if(isset($_POST['reserve']))
    
 ?>
 <?php require '../partials/_navbar_footer.php'; ?>
+<script>
+    let viewReservations = document.getElementById('view-reser');
+    viewReservations.onclick = function (){
+        window.location.href = "viewreservation.php";
+    }
+</script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </html>

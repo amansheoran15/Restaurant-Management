@@ -62,7 +62,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     </div>
     <div id="img">
         <img src="../assets/resto-img.jpg" class="img-fluid" alt="...">
-        <div class="centered">Lazeez <br> Restaurant</div>
+        <div class="centered">Mimi <br> Restaurant</div>
     </div>
 </div>
 
