@@ -104,10 +104,13 @@ require '../partials/_dbconnect.php';
 <!--                    </div>   -->
 <!--                </div>-->
                 <div class="d-flex justify-content-center mb-3">
-                <input type ="submit" id="submitBtn" name="submit" placeholder="Update"value="submit">
+                <input type ="submit" id="submitBtn" name="submit" placeholder="Update"value="Update Details">
                 </div>
             </div>
         </form>
+        <div class="d-flex justify-content-center mb-5">
+            <a href="employeeDetails.php"><button class="btn btn-primary">Go Back</button></a>
+        </div>
         </div>
     </div>
 <?php
@@ -121,15 +124,16 @@ require '../partials/_dbconnect.php';
    $email = $_POST['email'];
    $doj  = $_POST['doj'];
    $avail =$_POST['avail'];
-   $query="UPDATE `employee` SET `name` = '$name', `empid` = '$empid2', `designation` = '$desig', `salary` = '$sal', `phone` = '$phone', `email` = '$phone', `doj` = '$doj' WHERE `employee`.`empid` = '$empid'";
+   $query="UPDATE `employee` SET `name` = '$name', `empid` = '$empid2', `designation` = '$desig', `salary` = '$sal', `phone` = '$phone', `email` = '$email', `doj` = '$doj' WHERE `employee`.`empid` = '$empid2'";
+//     echo'<script> alert("'.$query.'")</script>';
    $data=mysqli_query($conn,$query);
    echo mysqli_num_rows($data);
    if($data)
     {
-        echo'<script> alert("Record edited")</script>
-
-         <meta http-equiv="refresh" 
-          content="1; url = employeeDetails.php" />';
+        echo'<script>
+                alert("Record edited");
+                window.location.href = "employeeDetails.php";
+             </script>';
 
     }
  }

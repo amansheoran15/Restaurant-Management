@@ -79,22 +79,26 @@ require '../partials/_dbconnect.php';
                         <input type="date" name="doj" id="joinDate" class="form-control"  placeholder="Date">
                     </div>    
                 </div>
-                <div class="row d-flex justify-content-evenly mt-5 mb-3">
-                    <div class="col-2 d-flex align-items-center" style="font-size: 1.3rem;">
-                        <label for="exampleInputEmail1">Availability</label>
-                    </div>
-                    <div class="col-9">
-                        <input class="form-check-input" type="radio" name="avail" id="availability" value="y" checked>
-                        <label class="form-check-label" for="availability">Yes</label>
-                        <input class="form-check-input ml-4" type="radio" name="avail" id="availability" value="n">
-                        <label class="form-check-label" for="availability">No</label>
-                    </div>   
-                </div>
+<!--                <div class="row d-flex justify-content-evenly mt-5 mb-3">-->
+<!--                    <div class="col-2 d-flex align-items-center" style="font-size: 1.3rem;">-->
+<!--                        <label for="exampleInputEmail1">Availability</label>-->
+<!--                    </div>-->
+<!--                    <div class="col-9">-->
+<!--                        <input class="form-check-input" type="radio" name="avail" id="availability" value="y" checked>-->
+<!--                        <label class="form-check-label" for="availability">Yes</label>-->
+<!--                        <input class="form-check-input ml-4" type="radio" name="avail" id="availability" value="n">-->
+<!--                        <label class="form-check-label" for="availability">No</label>-->
+<!--                    </div>   -->
+<!--                </div>-->
                 <div class="d-flex justify-content-center mb-3">
-                <input type ="submit" id="submitBtn" name="submit"  placeholder="Submit"value="submit">
+                <input type ="submit" id="submitBtn" name="submit"  placeholder="Submit"value="Add Employee">
                 </div>
             </div>
         </form>
+        <div class="d-flex justify-content-center mb-5">
+            <a href="employeeDetails.php"><button class="btn btn-primary">Go Back</button></a>
+        </div>
+
         </div>
     </div>
  <?php
