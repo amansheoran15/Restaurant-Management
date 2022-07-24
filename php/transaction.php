@@ -40,7 +40,7 @@ require '../partials/_dbconnect.php';
             echo '<td>'.$row['table-no'].'</td>';
             echo '<td>
             <a href="receipt.php?oid='.$row['oid'].'" target="_blank" class="btn btn-success">View</a>
-            <a href="receipt.php?oid='.$row['oid'].'" target="_blank" class="btn btn-success">Update</a>
+            <a href="updateOrder.php?oid='.$row['oid'].'" target="_blank" class="btn btn-success">Update</a>
             </td>';
             echo '<td>'.$row['date'].'</td>';
             echo '<td><a class="btn btn-success" onclick="payBill(this)">Pay</a></td>';

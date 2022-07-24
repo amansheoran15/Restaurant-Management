@@ -127,8 +127,8 @@ require '../partials/_dbconnect.php';
                 let tableNo = $('#table-no').val();
                 let qtys = $("input[name='qty']");
 
-                console.log(qtys);
-                console.log(qtys.get(0));
+                // console.log(qtys);
+                // console.log(qtys.get(0));
 
                 let items = [];
                 let i = 0;
