@@ -1,21 +1,35 @@
 <?php
-require '../partials/_dbconnect.php';
+session_start();
+if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']){  //If user is not logged in
+    header('location:index.php');
+}
+
+require '../partials/_dbconnect.php'; //Connecting to DB
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Reservation</title>
+
+<!--    DataTables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+<!--    Navbar Header-->
     <?php require '../partials/_navbar_header.php'; ?>
+
+<!--    Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <link rel="stylesheet" href="../css/table.css">
 </head>
-<body>
+<div>
+<!--Navbar Body-->
 <?php require '../partials/_navbar.php'; ?>
 <div class="reservation">
 <div class="heading d-flex justify-content-center my-3">
             <h3>Reserve Table</h3>
-        </div> 
+        </div>
+<!--    Form to reserve table-->
     <form action="#" method="POST">
     <div class="form-group">
                 <div class="row d-flex justify-content-evenly mb-3">
@@ -65,14 +79,6 @@ require '../partials/_dbconnect.php';
                 </select>  
                 </div>    
                 </div>
-                <!--<div class="row d-flex justify-content-evenly my-3">
-                    <div class="col-2 d-flex align-items-center" style="font-size: 1.3rem;">
-                <label for="date" class="form-label">Select Date: </label>
-                </div>
-                <div class="col-9">
-                <input type="date" name ="Date" id="dateNTime" class="form-control"  placeholder="Date" >
-            </div>
-            </div>-->
             <div class="row d-flex justify-content-evenly my-3">
                     <div class="col-2 d-flex align-items-center" style="font-size: 1.3rem;">
                <label for="slots" class="form-label mt-1">Select time Slot: </label>
@@ -88,25 +94,27 @@ require '../partials/_dbconnect.php';
             </div>
             <div class="d-flex justify-content-center mb-3">
                 <input type ="submit" id="reserveBtn" name="reserve" class="btn btn-primary" placeholder="Reserve"value="Reserve">
-                <button type="button" class="btn btn-primary ml-10" id="view-reser" style="margin-left: 3rem;">View Reservations</button>
+                <button type="button" class="btn btn-secondary ml-10" id="view-reser" style="margin-left: 3rem;">View Reservations</button>
             </div>
 </div>
     </form>
+</div>
 
 <?php
-if(isset($_POST['reserve']))
+if(isset($_POST['reserve']))  //POST request
 {
    $res_no  =$_POST['res_no']; 
    $name  = $_POST['Name'];
    $mobile = $_POST['mobile'];
    $email = $_POST['Email'];
    $count = $_POST['Count'];
-   //$date  = $_POST['Date'];
    $time  =$_POST['Time'];
+
+   //Query to fetch free table at that particular time slot
    $query="SELECT * from `reserved` where `reserved`.`$time`=1 LIMIT 1";
    $data=mysqli_query($conn,$query);
    $num=mysqli_num_rows($data);
-   if($num==NULL)
+   if($num==NULL) //If no free tables are available
     {
         echo"<script> alert('Sorry :( all tables are booked . Try another time slot')</script>";
     }
@@ -114,6 +122,8 @@ if(isset($_POST['reserve']))
    {
         $row= mysqli_fetch_assoc($data);
         $table = $row['table-no'] ;
+
+        //Query to insert details into reservation table
         $query1="INSERT INTO reservation(res_no,Name,Mobile,Email,Count,time,table_no) VALUES('$res_no','$name','$mobile','$email','$count','$time','$table')";
         $data1=mysqli_query($conn,$query1);
             if($data1)
@@ -122,11 +132,14 @@ if(isset($_POST['reserve']))
             }else{
                 die(mysqli_error($conn));
             }
+
+            //Set table as taken
             $query2="UPDATE `reserved` SET `reserved`.`$time`=0 WHERE `reserved`.`table-no` = '$table'";
            $data2=mysqli_query($conn,$query2); 
 
-            echo '<meta http-equiv="refresh" 
-                    content="1; url = viewreservation.php" />';
+            echo '<script>
+                    window.location.href = "viewreservation.php";
+                </script>';
 
    }
    } 
@@ -135,7 +148,7 @@ if(isset($_POST['reserve']))
 <?php require '../partials/_navbar_footer.php'; ?>
 <script>
     let viewReservations = document.getElementById('view-reser');
-    viewReservations.onclick = function (){
+    viewReservations.onclick = function (){ //Redirect to view reservations page on clicking the button
         window.location.href = "viewreservation.php";
     }
 </script>

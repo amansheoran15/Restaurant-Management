@@ -1,10 +1,10 @@
 
 <?php
 session_start();
-if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']){
+if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']){  //If user is not logged in
     header('location:index.php');
 }
-require '../partials/_dbconnect.php';
+require '../partials/_dbconnect.php'; //Connecting to DB
 ?>
 
 <!DOCTYPE html>
@@ -13,21 +13,21 @@ require '../partials/_dbconnect.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Item</title>
+    <title>Place Order</title>
 
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../css/newItemStyle.css">
+    <link rel="stylesheet" href="../css/updateOrder.css">
 
 </head>
 <body>
 
-<div class="editEmployee">
+<div class="editOrder">
     <div class="heading d-flex justify-content-center my-4">
-        <h3>Add New Item</h3>
+        <h3>Place New Order</h3>
     </div>
-    <!-- <form action="<?php $_SERVER['PHP_SELF']?>" method="post"> -->
+     <form>
         <div class="form-group">
             <div class="row d-flex justify-content-evenly mb-5">
                 <div class="col-2 d-flex align-items-center" style="font-size: 1.3rem;">
@@ -45,10 +45,12 @@ require '../partials/_dbconnect.php';
                 <div class="col-9">
                 <select class="form-select" name='table-no' id="table-no" aria-label="Default select example">
                          <option selected>Select Table</option>
-                        <?php 
+                        <?php
+                            //Fetch free table details
                             $query = "SELECT * FROM `tablemang` where `isFree` = 1";
                             $result = mysqli_query($conn, $query);
 
+                            //Displaying options of free tables
                             while($row = mysqli_fetch_assoc($result)){
                                 echo '<option value="'.$row['table-no'].'">'.$row['table-no'].'</option>';
                             }
@@ -65,10 +67,12 @@ require '../partials/_dbconnect.php';
                     <div class="col-6">
                         <select class="form-select" name='item-no' aria-label="Default select example">
                          <option selected>Open this select menu</option>
-                        <?php 
+                        <?php
+                            // Fetch details from menu
                             $query = "SELECT * FROM `menu`";
                             $result = mysqli_query($conn, $query);
 
+                            //Display menu details
                             while($row = mysqli_fetch_assoc($result)){
                                 echo '<option value="'.$row['item-no'].'">'.$row['item-name'].' | ₹'.$row['item-price'].'</option>';
                             }
@@ -92,7 +96,7 @@ require '../partials/_dbconnect.php';
                 <button class="btn btn-success addOrder" >Add Order</button>
             </div>
         </div>
-    <!-- </form> -->
+     </form>
 
     <div class="d-flex justify-content-center mb-5">
         <a href="transaction.php"><button class="btn btn-primary">Go Back</button></a>
@@ -100,17 +104,21 @@ require '../partials/_dbconnect.php';
 
 </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+<!--    JQuery-->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
+<!--    Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
     <script>
-        function removeItemBTN(e){
+        function removeItemBTN(e){ //Remove Item
             $(e).parent().parent().remove();
         }
 
         $(document).ready(function(){   
             $('.addItem').click(function(){
+                //Ajax request to add item
                 $.ajax({
                     url: "itemslist.php",
                     method: "GET",
@@ -127,18 +135,16 @@ require '../partials/_dbconnect.php';
                 let tableNo = $('#table-no').val();
                 let qtys = $("input[name='qty']");
 
-                // console.log(qtys);
-                // console.log(qtys.get(0));
-
                 let items = [];
                 let i = 0;
+
+                //Add items into array
                 $("select[name='item-no']").each(function() {
                     items.push({ itemNo: $(this).val(), qty: qtys.get(i).value});
                     i++;
                 });
 
-                // console.log(items);
-
+                //AJAX request to add order
                 $.ajax({
                     url: "addOrder.php",
                     method: "POST",
@@ -149,7 +155,6 @@ require '../partials/_dbconnect.php';
                         items: items,
                     },
                     success: function (data) {
-                       console.log(data);
                         window.location.href = "transaction.php";
                     }
                 })

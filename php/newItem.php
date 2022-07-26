@@ -1,25 +1,19 @@
 <?php
 session_start();
-if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']){
+if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']){ //If user is not logged in
     header('location:index.php');
 }
-require '../partials/_dbconnect.php';
+require '../partials/_dbconnect.php';  //Connect to DB
 
 
 $showErr = false;
 $success = false;
-if($_SERVER['REQUEST_METHOD']=="POST"){
+if($_SERVER['REQUEST_METHOD']=="POST"){  //If server receives POST request
     $item_no = $_POST['item-no'];
-//    echo $item_no;
     $item_name = $_POST['item-name'];
     $item_price = $_POST['item-price'];
 
-//    $query = "SELECT * FROM MENU WHERE MENU.'item-no'='$item_no'";
-//    $result = mysqli_query($conn,$query);
-//    echo var_dump($result);
-//    echo mysqli_error($conn);
-//    $num = mysqli_num_rows($result);
-
+    // Inserting into MENU table
     $query = "INSERT INTO MENU VALUES('$item_no','$item_name','$item_price')";
     $result = mysqli_query($conn,$query);
     if(!$result){
@@ -50,7 +44,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 </head>
 <body>
    
-    <div class="editEmployee">
+    <div class="editItem">
         <div class="heading d-flex justify-content-center my-4">
             <h3>Add New Item</h3>
         </div> 
@@ -82,12 +76,12 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                 </div>
 
                 <?php
-                if($showErr){
+                if($showErr){ //If item already exists
                     echo '<div class="alert alert-danger" role="alert">'
                               .$showErr.
                           '</div>';
                 }
-                if($success){
+                if($success){  //If item is successfully inserted
                     echo '<div class="alert alert-success" role="alert">
                             Item inserted successfully!
                         </div>';
@@ -106,5 +100,6 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
     </div>
 </body>
+<!--Bootstrap-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </html>

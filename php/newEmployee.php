@@ -1,5 +1,9 @@
 <?php
-require '../partials/_dbconnect.php';
+session_start();
+if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']){  //If user is not logged in
+    header('location:index.php');
+}
+require '../partials/_dbconnect.php'; //Connecting to DB
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,16 +15,17 @@ require '../partials/_dbconnect.php';
 
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <link rel="stylesheet" href="../css/editEmployeeStyle.css">
-
-
 </head>
 <body>
    
     <div class="editEmployee">
         <div class="heading d-flex justify-content-center my-4">
             <h3>Add New Employee</h3>
-        </div> 
+        </div>
+
+<!--        Form to add new employee-->
         <form action="#" method="POST">
             <div class="form-group">
                 <div class="row d-flex justify-content-evenly mb-3">
@@ -79,17 +84,7 @@ require '../partials/_dbconnect.php';
                         <input type="date" name="doj" id="joinDate" class="form-control"  placeholder="Date">
                     </div>    
                 </div>
-<!--                <div class="row d-flex justify-content-evenly mt-5 mb-3">-->
-<!--                    <div class="col-2 d-flex align-items-center" style="font-size: 1.3rem;">-->
-<!--                        <label for="exampleInputEmail1">Availability</label>-->
-<!--                    </div>-->
-<!--                    <div class="col-9">-->
-<!--                        <input class="form-check-input" type="radio" name="avail" id="availability" value="y" checked>-->
-<!--                        <label class="form-check-label" for="availability">Yes</label>-->
-<!--                        <input class="form-check-input ml-4" type="radio" name="avail" id="availability" value="n">-->
-<!--                        <label class="form-check-label" for="availability">No</label>-->
-<!--                    </div>   -->
-<!--                </div>-->
+
                 <div class="d-flex justify-content-center mb-3">
                 <input type ="submit" id="submitBtn" name="submit"  placeholder="Submit"value="Add Employee">
                 </div>
@@ -102,7 +97,7 @@ require '../partials/_dbconnect.php';
         </div>
     </div>
  <?php
- if(isset($_POST['submit']))
+ if(isset($_POST['submit']))  //If server receives POST request
 {
    $name  = $_POST['name'];
    $empid = $_POST['empid'];
@@ -112,21 +107,28 @@ require '../partials/_dbconnect.php';
    $email = $_POST['email'];
    $doj  = $_POST['doj'];
    $avail =$_POST['avail'];
-   $query="INSERT INTO employee(name,empid,designation,salary,phone,email,doj,availability) 
-   VALUES('$name','$empid','$desig','$sal','$phone','$email','$doj','1')";
+   if($desig=="Waiter" || $desig=="waiter"){
+       $query="INSERT INTO employee(name,empid,designation,salary,phone,email,doj,availability) 
+       VALUES('$name','$empid','$desig','$sal','$phone','$email','$doj','1')";
+   }else{
+       $query="INSERT INTO employee(name,empid,designation,salary,phone,email,doj,availability) 
+       VALUES('$name','$empid','$desig','$sal','$phone','$email','$doj',NULL)";
+   }
    $data=mysqli_query($conn,$query);
    if($data)
     {
-        echo"<script> alert('Record added ')</script>";
-     ?>
-         <meta http-equiv="refresh" 
-          content="1; url = employeeDetails.php" />
-     <?php
+        echo"<script> alert('Employee added')
+                window.location.href = 'employeeDetails.php';  //Redirect to employee details page
+            </script>";
     }else{
        echo mysqli_error($conn);
    }
 }
 ?>
-</body>
+
+<!--Bootstrap-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+
 </html>

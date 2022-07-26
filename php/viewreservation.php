@@ -1,19 +1,34 @@
 <?php
-require '../partials/_dbconnect.php';
+session_start();
+if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']){  //If user is not logged in
+    header('location:index.php');
+}
+
+require '../partials/_dbconnect.php';  //Connecting to DB
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Reservation</title>
+    <title>Reservations</title>
+
+    <!-- Datatables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+<!--    Including Navbar header-->
     <?php require '../partials/_navbar_header.php'; ?>
+
+<!--    Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <link rel="stylesheet" href="../css/viewreservation.css">
 </head>
 <body>
+<!--Including Navbar body-->
 <?php require '../partials/_navbar.php'; ?>
+
+
 <div class="table-div">
-<div id="heading">
+    <div id="heading">
         <h3>
             Reservation Details
         </h3>
@@ -35,8 +50,11 @@ require '../partials/_dbconnect.php';
 
         <tbody>
         <?php
+        // Fetching data from reservation table
           $sql="select * from reservation";
           $result= mysqli_query($conn,$sql);
+
+          //Displaying Reservation data
           while($row=(mysqli_fetch_assoc($result)))
           {
             echo"
@@ -63,19 +81,24 @@ require '../partials/_dbconnect.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     <script>
+        // Setting up datatable for the table
         $(document).ready( function () {
             $('#reservation-table').DataTable();
         } );
+
+        //Functions used to confirm change
         function checkdelete()
         {
-            return confirm('Reservation will be cancelled');
+            return confirm('Are you sure you want to cancel the reservation?');
         }
         function checkedit()
         {
-            return confirm('Reservation will be edited');
+            return confirm('Are you sure you want to edit the reservation?');
         }
-</script>
-<?php require '../partials/_navbar_footer.php'; ?>
+    </script>
+
+<!--    Including Navbar Footer-->
+    <?php require '../partials/_navbar_footer.php'; ?>
 </body>
 
 <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>-->

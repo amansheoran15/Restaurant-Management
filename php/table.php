@@ -1,4 +1,9 @@
 <?php
+session_start();
+if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']){  //If user is not logged in
+    header('location:index.php');
+}
+
 require '../partials/_dbconnect.php';
 ?>
 
@@ -36,7 +41,7 @@ require '../partials/_dbconnect.php';
         $result = mysqli_query($conn,$query);
         $sno = 1;
         while($row = mysqli_fetch_assoc($result)){
-            if($row['isFree']==1){
+            if($row['isFree']==1){  //To display if table is free or not
                 $free = "Yes";
             }else{
                 $free = "No";
@@ -46,9 +51,9 @@ require '../partials/_dbconnect.php';
             echo '<td class="tableNum">'.$row['table-no'].'</td>';
             echo '<td>'.$row['capacity'].'</td>';
             echo '<td>'.$free.'</td>';
-            if($row['waiter#-assign']==null){
+            if($row['waiter#-assign']==null){   //If waiter is not assigned
                 echo '<td>-</td>';
-            }else{
+            }else{ // If waiter is assigned
                 echo '<td>'.$row['waiter#-assign'].'</td>';
             }
 //            echo '<td>'.$row['waiter#-assign'].'</td>';
@@ -64,48 +69,11 @@ require '../partials/_dbconnect.php';
     </table>
 </div>
 
-<div class="d-flex justify-content-center mb-4">
-    <a href="newTable.php" class="btn btn-info">Add Table</a>
+<div class="d-flex justify-content-center mb-4" >
+    <a href="newTable.php" class="btn btn-primary">Add Table</a>
+    <a href="tableReserveInfo.php" class="btn btn-secondary" style="margin-left: 3rem;">Reserved Tables Data</a>
 </div>
 
-<div class="table-div">
-    <h3>Reservation Information</h3>
-    <table class="items" id="reserve_info">
-        <thead>
-        <tr>
-            <td class="headers">S. No.</td>
-            <td class="headers">Table No.</td>
-            <td class="headers">7:00</td>
-            <td class="headers">8:00</td>
-            <td class="headers">9:00</td>
-
-        </tr>
-        </thead>
-        <tbody>
-
-        <?php
-        $query = "SELECT * FROM RESERVED";
-        $result = mysqli_query($conn,$query);
-        $sno = 1;
-        $free = ["No","Yes"];
-        while($row = mysqli_fetch_assoc($result)){
-
-            echo '<tr>';
-            echo '<td>'.$sno.'</td>';
-            echo '<td>'.$row['table-no'].'</td>';
-            echo '<td>'.$free[$row['7:00']].'</td>';
-            echo '<td>'.$free[$row['8:00']].'</td>';
-            echo '<td>'.$free[$row['9:00']].'</td>';
-
-            echo '</tr>';
-            $sno++;
-        }
-        ?>
-
-        </tbody>
-
-    </table>
-</div>
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -120,15 +88,12 @@ require '../partials/_dbconnect.php';
     $(document).ready( function () {
         $('#tablemang_table').DataTable();
     } );
-    $(document).ready( function () {
-        $('#reserve_info').DataTable();
-    } );
+
 
     function removeTable(e) {
         let tableId = e.parentElement.parentElement.querySelector('.tableNum').innerText;
 
-        // console.log(tableId);
-
+        //AJAX request to remove the table
         $.ajax({
             url: "removeTable.php",
             method: "POST",

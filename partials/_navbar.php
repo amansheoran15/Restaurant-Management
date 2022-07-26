@@ -1,16 +1,9 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">-->
-<!--  <script src="https://kit.fontawesome.com/8de4607864.js" crossorigin="anonymous"></script>-->
-<!---->
-<!--    <link rel="stylesheet" href="../css/navbar.css">-->
-<!--    <title>Navbar</title>-->
-<!--</head>-->
-<!--<body>-->
+
 <?php
- echo '<nav class="navbar navbar-main">
+
+//Navbar Body
+
+echo '<nav class="navbar navbar-main">
     <div class="container" id="container">
 
       <a class="navbar-brand" id="hamburger" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
@@ -19,20 +12,11 @@
       <a class="navbar-brand d-flex logout" id="hamburger" data-bs-toggle="offcanvas" href="../partials/_logout.php" role="button" aria-controls="offcanvasExample">
           <img src="../assets/logout.svg" width="50">
       </a>
-
-        <!--<li class="nav-item d-flex logout ml-auto">
-            <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Admin
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">Log Out</a></li>
-            </ul> 
-        </li>-->
     </div>
   </nav>
 
 
-
+   <!-- Navbar Menu Using Offcanvas -->
   <div class="offcanvas offcanvas-start offcanvas-container" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="resto-title"><img src="../assets/logo-white.png" width="50">Mimi Restaurant</h5>
@@ -54,14 +38,3 @@
     </div>
   </div>';
 ?>
-
-
-
-
-
-
-
-<!--  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>-->
-<!--  <script src="https://kit.fontawesome.com/8de4607864.js" crossorigin="anonymous"></script>-->
-<!--</body>-->
-<!--</html>-->
